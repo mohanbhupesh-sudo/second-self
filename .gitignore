@@ -1,0 +1,44 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Integration credentials & Secrets
+.env
+.streamlit/secrets.toml
+
+# OS metadata
+.DS_Store
+Thumbs.db
+# Keep folder structure but ignore actual captured notes/files
+raw/*
+!raw/.gitkeep
+
+wiki/*
+!wiki/.gitkeep
+!wiki/Projects/
+!wiki/Areas/
+!wiki/Resources/
+!wiki/Archives/
+
+wiki/Projects/*
+!wiki/Projects/.gitkeep
+wiki/Areas/*
+!wiki/Areas/.gitkeep
+wiki/Resources/*
+!wiki/Resources/.gitkeep
+wiki/Archives/*
+!wiki/Archives/.gitkeep
+
+# Ignore PDF lecture/session files
+*.pdf
+docs/*.pdf
+
+# Ignore legacy unused assets
+Not in USE/
