@@ -27,7 +27,8 @@ This document defines the step-by-step implementation plan for building **Second
 ---
 
 ## Phase 1: Ingestion Engine (`capture.py`)
-- **Objective**: Build a single command capture pipeline that saves any note, link, or file to `raw/`.
+- **Objective**: 
+  Build a single command capture pipeline that saves any note, link, or file to `raw/`.
 - **Tasks**:
   1. Setup argparse interface accepting `--note` (text string), `--link` (URL string), and `--file` (path to a local file).
   2. Implement text note processing: saves content to a `.txt` raw file.
@@ -38,7 +39,8 @@ This document defines the step-by-step implementation plan for building **Second
 ---
 
 ## Phase 2: Classification Engine (`classify.py`)
-- **Objective**: Use LLM intelligence to structure and file raw captures using the PARA framework.
+- **Objective**: 
+Use LLM intelligence to structure and file raw captures using the PARA framework.
 - **Tasks**:
   1. Build a helper wrapper for LLM requests (supporting Groq Llama 3 or Gemini API endpoints).
   2. Write LLM prompts that ask for structured JSON output including PARA Category, tags list, short summary, and sanitized title.
@@ -49,7 +51,8 @@ This document defines the step-by-step implementation plan for building **Second
 ---
 
 ## Phase 3: Association & Embeddings Engine (`link.py`)
-- **Objective**: Use dense vectors to calculate similarity between notes and automatically insert backlinks.
+- **Objective**: 
+Use dense vectors to calculate similarity between notes and automatically insert backlinks.
 - **Tasks**:
   1. Setup embedding manager loading the local `all-MiniLM-L6-v2` transformer model (cached for reuse).
   2. Generate embeddings for note contents when they are added or modified.
@@ -60,7 +63,8 @@ This document defines the step-by-step implementation plan for building **Second
 ---
 
 ## Phase 4: Graph Model Generator (`build_graph.py`)
-- **Objective**: Scan notes and relationships to construct the network structure.
+- **Objective**: 
+ Scan notes and relationships to construct the network structure.
 - **Tasks**:
   1. Walk through the `wiki/` directory recursively.
   2. Parse frontmatter YAML configurations for all Markdown files to extract metadata (ID, Category, Title, Summary).
@@ -71,7 +75,8 @@ This document defines the step-by-step implementation plan for building **Second
 ---
 
 ## Phase 5: Retrieval-Augmented Generation Engine (`ask.py`)
-- **Objective**: Implement context retrieval and synthesization for natural-language Q&A.
+- **Objective**: 
+  Implement context retrieval and synthesization for natural-language Q&A.
 - **Tasks**:
   1. Vectorize input query strings using the sentence-transformer.
   2. Query `embeddings.json` cache, sorting available notes by cosine similarity.
@@ -82,7 +87,8 @@ This document defines the step-by-step implementation plan for building **Second
 ---
 
 ## Phase 6: UI & Dashboard Assembly (Local `app.py`)
-- **Objective**: Build the Streamlit application structure integrating graph visuals and Q&A.
+- **Objective**: 
+  Build the Streamlit application structure integrating graph visuals and Q&A.
 - **Tasks**:
   1. Create the base Streamlit layout (Title header, sidebar configuration, main body partition).
   2. Embed the network visualization using `streamlit.components.v1.html` rendering a vis.js force-directed canvas.
@@ -92,7 +98,8 @@ This document defines the step-by-step implementation plan for building **Second
 ---
 
 ## Phase 7: Local Integration Testing
-- **Objective**: Run complete system validation tests locally with real information.
+- **Objective**: 
+  Run complete system validation tests locally with real information.
 - **Tasks**:
   1. Capture 15+ real-world notes, bookmarks, and files using `capture.py`.
   2. Run the organization scripts (`classify.py` and `link.py`) to process raw captures into the `wiki/` folder.
@@ -103,7 +110,8 @@ This document defines the step-by-step implementation plan for building **Second
 ---
 
 ## Phase 8: Production Deployment Preparation
-- **Objective**: Set up code configurations for public distribution.
+- **Objective**: 
+  Set up code configurations for public distribution.
 - **Tasks**:
   1. Clean codebase and ensure robust error exception handling (e.g., handling missing API keys, empty raw folders).
   2. Configure dependency freeze files, ensuring explicit module versions are locked.
@@ -112,7 +120,8 @@ This document defines the step-by-step implementation plan for building **Second
 ---
 
 ## Phase 9: Live QA & Verification
-- **Objective**: Deploy application and run final public validation tests.
+- **Objective**: 
+  Deploy application and run final public validation tests.
 - **Tasks**:
   1. Deploy secondself repository on Streamlit Cloud.
   2. Set secret environment variables (`GROQ_API_KEY` / `GEMINI_API_KEY`) in the deployment dashboard.
